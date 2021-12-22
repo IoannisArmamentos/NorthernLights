@@ -19,7 +19,7 @@ Sends a GET request with api, langitude and longitude. <br>
 Calls for translation for dt.
 
 **Extensions.cs** <br>
-Unix datetime starts at 01-01-1977 at 00:00 ΑΜ . <br>
+Unix datetime starts at 01-01-1970 at 00:00 ΑΜ . <br>
 *GetDateTimeFromUnixTimeStamp* converts a Unix timestamp to datetime. <br>
 *GetTime* is used for sunrise and sunset times. <br>
 *GetDate* is used for date.
