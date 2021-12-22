@@ -18,6 +18,13 @@ export class FetchDataComponent implements OnInit{
     this.http = http;
   }
 
+  /* A callback method where X=Longitude Y=Latitude
+   EPSG:4326 is a geographic, non-project coordinate system. It is the lat and long the GPS displays.
+   EPSG:3857 is a projected coordinate system. This is the coordinate system used by Google Maps and pretty much all other web mapping applications.
+   Often, data is stored in EPSG:4326 and displayed in EPSG:3857 Also, a mapping API may take lat, longs (i.e. EPSG: 4326 ) as an input
+   but when those coordinates are displayed on a map, they will be shown a map based on a Web Mercator (i.e. EPSG:3857) projection.*/
+
+  // Coordinates are taken by our mouse position. My region is chosen as default.
   ngOnInit() {
     var mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: ol.coordinate.createStringXY(4),
