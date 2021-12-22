@@ -1,0 +1,59 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<div id="map" class="map"></div>
+<div id="mouse-position"></div>
+
+<!--<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Temp</th>
+      <th>Clouds</th>
+      <th>Humidity</th>
+      <th>Pressure</th>
+      <th>Wind Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cForecast of weather.hourly">
+      <td>{{ cForecast.weather[0].id + " " + cForecast.weather[0].main + " " + cForecast.weather[0].description }}</td>
+      <td>{{ cForecast.temp + " " + cForecast.weather[0].icon + "°C" }}</td>
+      <td>{{ cForecast.clouds + "%" }}</td>
+      <td>{{ cForecast.humidity + "%" }}</td>
+      <td>{{ cForecast.pressure + "hPa" }}</td>
+      <td>{{ cForecast.wind_speed + "m/s"}}</td>
+    </tr>
+  </tbody>
+</table>-->
+
+<th>Daily Forecast</th>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Temp</th>
+      <th>Clouds</th>
+      <th>Humidity</th>
+      <th>Pressure</th>
+      <th>Wind Speed</th>
+      <th>Sunrise/Sunset</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let dForecast of weather.daily">
+
+      <td>{{dForecast.dt_DateTime}} <BR> {{ dForecast.weather[0].main }}  </td>
+
+      <td><img src="http://openweathermap.org/img/wn/{{dForecast.weather[0].icon}}@2x.png" width="50" /> <BR> {{ dForecast.temp.max + "°C" }} <BR> {{dForecast.temp.min + "°C" }} </td>
+
+      <td>{{ dForecast.clouds + "%" }}</td>
+      <td>{{ dForecast.humidity + "%" }}</td>
+      <td>{{ dForecast.pressure + "hPa" }}</td>
+      <td>{{ dForecast.wind_speed + "m/s"}}</td>
+      <td>{{ dForecast.sunriseTime + " AM," + dForecast.sunsetTime + " PM"}}</td>
+    </tr>
+  </tbody>
+</table>
