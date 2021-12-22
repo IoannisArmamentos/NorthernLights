@@ -5,7 +5,7 @@ A weather forecast application made in Visual Studio using Angular and Asp.net f
 **Openstreetmap** <br>
 You can select a location on the map with your mouse. Latitude & longitude are saved on click. <br>
 Longitude=X and latitude=Y are appearing below the map like the pointer of your mouse. In real life Latitude always goes first. <br>
-By default, the map is zoomed into my region. If there is a problem with this, then NaN NaN appears.
+By default, the map is zoomed into my region. If there is a problem with the coordinates, then NaN NaN appears.
 
 **OpenWeather** <br>
 Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with a tool like http://json2ts.com/ .
