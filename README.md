@@ -8,14 +8,14 @@ Longitude=X and latitude=Y are appearing below the map like the pointer of your 
 By default, the map is zoomed into my region. If there is a problem with this, then NaN NaN appears.
 
 **OpenWeather** <br>
-Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with tools like http://json2ts.com/ .
+Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with a tool like http://json2ts.com/ .
 
 **WeatherForecast.cs** <br>
 Declaring classes and variables. Date comes in *double dt* Unix timestamp that needs proper converting. <br>
 For example, *public class Daily* has to do with the incoming values for the next 10 days.
 
 **WeatherForecastController.cs** <br>
-Sends a GET request with api, langitude and longtitude. <br>
+Sends a GET request with api, langitude and longitude. <br>
 Calls for translation for dt.
 
 **Extensions.cs** <br>
