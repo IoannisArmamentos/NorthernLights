@@ -56,3 +56,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8923872CAC9A40DAB05D372B8C19F922 }}
           package: .
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
