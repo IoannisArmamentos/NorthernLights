@@ -42,7 +42,7 @@ export class FetchDataComponent implements OnInit, OnDestroy{
       undefinedHTML: '&nbsp;'
     });
 
-    // cancels previous requests and debounces every 800 ms
+    // Cancels previous requests and debounces every 800 ms
     this.subscription = this.onRequest.pipe(
       debounceTime(800),
       distinctUntilChanged(),

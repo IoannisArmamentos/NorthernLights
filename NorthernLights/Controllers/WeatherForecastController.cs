@@ -18,7 +18,6 @@ namespace NorthernLights.Controllers
         private readonly HttpClient _httpClient;
         private string url = "onecall?lat={lat}&lon={long}&appid={apikey}&units=metric";
 
-
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpClientFactory factory, IOptions<OpenWeatherOptions> options)
         {
             _logger = logger;
@@ -31,6 +30,7 @@ namespace NorthernLights.Controllers
 
 
         [HttpGet]
+        // CancellationToken used for cancellation of asynchronous or long-running synchronous operations. Consider this the "backend way" to help with performance
         public async Task<IActionResult> Get(string latitude, string longitude, CancellationToken token)
         {
             _logger.LogInformation($"Requesting Weather forecast for: {latitude} {longitude}");
@@ -39,7 +39,6 @@ namespace NorthernLights.Controllers
                 .Replace("{long}", longitude), token).ConfigureAwait(false);
             _logger.LogInformation($"Requested Weather forecast for: {latitude} {longitude}");
             return response;
-
         }
 
         // Send a GET request to the specified Uri as an asynchronous operation.
