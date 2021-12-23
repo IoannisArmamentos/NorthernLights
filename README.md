@@ -8,7 +8,7 @@ Longitude=X and latitude=Y are appearing below the map like the pointer of your 
 By default, the map is zoomed into my region. If there is a problem with the coordinates, then NaN NaN appears.
 
 **OpenWeather** <br>
-Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with a tool like http://json2ts.com/ .
+Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with a tool like http://json2ts.com/ . It looks like this: https://api.openweathermap.org/data/2.5/onecall?lat=39.3666&lon=22.9507&appid=5fb1dc554c8f1fda3541e7f155802c28&units=metric
 
 **WeatherForecast.cs** <br>
 Declaring classes and variables. Date comes in *double dt* Unix timestamp that needs proper converting. <br>
