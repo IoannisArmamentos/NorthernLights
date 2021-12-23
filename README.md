@@ -1,6 +1,7 @@
 # NorthernLights
 
-![Pipeline](https://github.com/IoannisArmamentos/NorthernLights/.github/workflows/pipelines.yml/badge.svg)
+## Github Actions
+[![.NET](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml/badge.svg)](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml)
 
 A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 10 seconds to load the weather data.
 Production is hosted on Azure here: https://northernlights.azurewebsites.net/ <br>
