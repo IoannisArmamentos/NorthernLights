@@ -10,6 +10,8 @@ By default, the map is zoomed into my region. If there is a problem with the coo
 **OpenWeather** <br>
 Using the One Call API from https://openweathermap.org/api/one-call-api , we can get all the essential weather data for a specific location in json format. The json response can be translated to typescript with a tool like http://json2ts.com/ . It looks like this: https://api.openweathermap.org/data/2.5/onecall?lat=39.3666&lon=22.9507&appid=5fb1dc554c8f1fda3541e7f155802c28&units=metric
 
+<br>
+
 **WeatherForecast.cs** <br>
 Declaring classes and variables. Date comes in *double dt* Unix timestamp that needs proper converting. <br>
 For example, *public class Daily* has to do with the incoming values for the next 10 days.
@@ -30,3 +32,13 @@ For each new table you can use for example <tr *ngFor="let dForecast of weather.
 
 **fetch-data.component.ts** <br>
 The typescript part where the coordinates and the map are initialized and the declarations(weather interfaces) can be exported.
+
+<br>
+
+**Useful links that helped me:** <br>
+https://www.youtube.com/watch?v=nGVoHEZojiQ <br>
+https://github.com/ultrasonicsoft/ng-openstreetmap-demo <br>
+https://github.com/CodeExplainedRepo/Weather-App-JavaScript <br>
+https://github.com/atufkas/angular-openweather-app <br>
+https://stackoverflow.com/questions/26880487/formatting-the-mouseposition-control-output-in-openlayers-3 <br>
+https://openlayers.org/ <br>
