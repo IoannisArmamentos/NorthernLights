@@ -1,6 +1,6 @@
 # NorthernLights
 
-A weather forecast application made in Visual Studio using Angular and Asp.net frameworks.
+A weather forecast application made in Visual Studio using Angular and Asp.net frameworks. It  may take up to 15 seconds to load the weather data.
 
 **Openstreetmap** <br>
 You can select a location on the map with your mouse. Latitude & longitude are saved on click. <br>
