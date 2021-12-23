@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using NorthernLights.Models;
 
 namespace NorthernLights
 {
@@ -25,6 +27,13 @@ namespace NorthernLights
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.Configure<OpenWeatherOptions>(Configuration.GetSection("OpenWeatherApi"));
+
+            services.AddHttpClient("OpenWeatherApi", (provider, client) => {
+                var options = provider.GetRequiredService<IOptions<OpenWeatherOptions>>();
+                client.BaseAddress = new System.Uri(options.Value.BaseUrl);
             });
         }
 

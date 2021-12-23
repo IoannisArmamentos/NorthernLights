@@ -5,30 +5,7 @@
 <div id="map" class="map"></div>
 <div id="mouse-position"></div>
 
-<!--<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Temp</th>
-      <th>Clouds</th>
-      <th>Humidity</th>
-      <th>Pressure</th>
-      <th>Wind Speed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cForecast of weather.hourly">
-      <td>{{ cForecast.weather[0].id + " " + cForecast.weather[0].main + " " + cForecast.weather[0].description }}</td>
-      <td>{{ cForecast.temp + " " + cForecast.weather[0].icon + "°C" }}</td>
-      <td>{{ cForecast.clouds + "%" }}</td>
-      <td>{{ cForecast.humidity + "%" }}</td>
-      <td>{{ cForecast.pressure + "hPa" }}</td>
-      <td>{{ cForecast.wind_speed + "m/s"}}</td>
-    </tr>
-  </tbody>
-</table>-->
-
-<th>Daily Forecast</th>
+<h3>Current Weather</h3>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
   <thead>
     <tr>
@@ -38,22 +15,64 @@
       <th>Humidity</th>
       <th>Pressure</th>
       <th>Wind Speed</th>
-      <th>Sunrise/Sunset</th>
+      <th>Sunrise / Sunset</th>
     </tr>
   </thead>
   <tbody>
+    <tr *ngIf="weather.current">
+      <td>{{weather.current.dt*1000 | date}} <BR> {{ weather.current.weather[0].main }}  </td>
+      <td><img src="http://openweathermap.org/img/wn/{{weather.current.weather[0].icon}}@2x.png" width="50" /> <BR> {{ weather.current.temp + "°C" }}</td>
+      <td>{{ weather.current.clouds + "%" }}</td>
+      <td>{{ weather.current.humidity + "%" }}</td>
+      <td>{{ weather.current.pressure + "hPa" }}</td>
+      <td>{{ weather.current.wind_speed + "m/s"}}</td>
+      <td>{{ weather.current.sunrise*1000 | date:'HH:mm' }} / {{ weather.current.sunset*1000 | date:'HH:mm' }}</td>
+    </tr>
+  </tbody>
+</table>
 
+<h3>Daily Forecast</h3>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Temp</th>
+      <th>Clouds</th>
+      <th>Humidity</th>
+      <th>Pressure</th>
+      <th>Wind Speed</th>
+      <th>Sunrise / Sunset</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let dForecast of weather.daily">
-
-      <td>{{dForecast.dt_DateTime}} <BR> {{ dForecast.weather[0].main }}  </td>
-
+      <td>{{dForecast.dt*1000 | date}} <BR> {{ dForecast.weather[0].main }}  </td>
       <td><img src="http://openweathermap.org/img/wn/{{dForecast.weather[0].icon}}@2x.png" width="50" /> <BR> {{ dForecast.temp.max + "°C" }} <BR> {{dForecast.temp.min + "°C" }} </td>
-
       <td>{{ dForecast.clouds + "%" }}</td>
       <td>{{ dForecast.humidity + "%" }}</td>
       <td>{{ dForecast.pressure + "hPa" }}</td>
       <td>{{ dForecast.wind_speed + "m/s"}}</td>
-      <td>{{ dForecast.sunriseTime + " AM," + dForecast.sunsetTime + " PM"}}</td>
+      <td>{{ dForecast.sunrise*1000 | date:'HH:mm' }} / {{ dForecast.sunset*1000 | date:'HH:mm' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Region Alerts</h3>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Dates</th>
+      <th>Description</th>
+      <th>Tag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let aForecast of weather.alerts">
+      <td>{{ aForecast.event}}</td>
+      <td>{{ aForecast.start*1000 | date }} <BR> {{ aForecast.end*1000 | date }}</td>
+      <td>{{ aForecast.description }}</td>
+      <td>{{ aForecast.tags }}</td>
     </tr>
   </tbody>
 </table>

@@ -1,20 +1,7 @@
-using System;
 using System.Collections.Generic;
 
-namespace NorthernLights
+namespace NorthernLights.Models
 {
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public double TemperatureC { get; set; }
-
-        public double TemperatureF => 32 + (double)(TemperatureC / 0.5556);
-
-        public string Summary { get; set; }
-    }
-
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Weather
     {
         public double id { get; set; }
@@ -56,7 +43,6 @@ namespace NorthernLights
     public class Hourly
     {
         public double dt { get; set; }
-
         public double temp { get; set; }
         public double feels_like { get; set; }
         public double pressure { get; set; }
@@ -94,11 +80,11 @@ namespace NorthernLights
     public class Daily
     {
         public double dt { get; set; }
-        public string dt_DateTime { get; set; }
+        //public string dt_DateTime { get; set; }
         public double sunrise { get; set; }
-        public string sunriseTime { get; set; }
+        //public string sunriseTime { get; set; }
         public double sunset { get; set; }
-        public string sunsetTime { get; set; }
+        //public string sunsetTime { get; set; }
         public double moonrise { get; set; }
         public double moonset { get; set; }
         public double moon_phase { get; set; }
@@ -122,7 +108,9 @@ namespace NorthernLights
         public string sender_name { get; set; }
         public string @event { get; set; }
         public double start { get; set; }
+        public string startDateTime { get; set; }
         public double end { get; set; }
+        public string endDateTime { get; set; }
         public string description { get; set; }
         public List<string> tags { get; set; }
     }
@@ -139,6 +127,5 @@ namespace NorthernLights
         public List<Daily> daily { get; set; }
         public List<Alert> alerts { get; set; }
     }
-
 
 }

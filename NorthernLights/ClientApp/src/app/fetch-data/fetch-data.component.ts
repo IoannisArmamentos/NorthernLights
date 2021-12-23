@@ -1,22 +1,30 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { of, Subject, Subscription } from 'rxjs';
+import { debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
 declare var ol: any;
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
-export class FetchDataComponent implements OnInit{
+export class FetchDataComponent implements OnInit, OnDestroy{
   public weather: RootObject;
   map: any;
   latitude: any;
   longitude: any;
   http: HttpClient;
 
+  subscription: Subscription;
+  onRequest: Subject<{ longitude, latitude }> = new Subject<{ longitude, latitude }>();
+
   constructor(http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     this.http = http;
   }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    }
+
 
   /* A callback method where X=Longitude Y=Latitude
    EPSG:4326 is a geographic, non-project coordinate system. It is the lat and long the GPS displays.
@@ -24,7 +32,7 @@ export class FetchDataComponent implements OnInit{
    Often, data is stored in EPSG:4326 and displayed in EPSG:3857 Also, a mapping API may take lat, longs (i.e. EPSG: 4326 ) as an input
    but when those coordinates are displayed on a map, they will be shown a map based on a Web Mercator (i.e. EPSG:3857) projection.*/
 
-  // Coordinates are taken by our mouse position. My region is chosen as default.
+  // Coordinates are taken by the mouse position on the map. My region is chosen as default.
   ngOnInit() {
     var mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: ol.coordinate.createStringXY(4),
@@ -34,6 +42,15 @@ export class FetchDataComponent implements OnInit{
       undefinedHTML: '&nbsp;'
     });
 
+    // cancels previous requests and debounces every 800 ms
+    this.subscription = this.onRequest.pipe(
+      debounceTime(800),
+      distinctUntilChanged(),
+      switchMap(longlat => this.http.get<RootObject>(this.baseUrl + `weatherforecast?latitude=${longlat.latitude}&longitude=${longlat.longitude}`)
+      )).subscribe((result: RootObject) => {
+        this.weather = result;
+        console.error(result);
+      }, error => console.error(error));
 
     this.map = new ol.Map({
       target: 'map',
@@ -58,22 +75,16 @@ export class FetchDataComponent implements OnInit{
 
       this.longitude = lonlat[0];
       this.latitude = lonlat[1];
-      this.fetchWeatherData();
+      this.weather = null;
+      this.onRequest.next({ latitude: lonlat[1], longitude: lonlat[0] })
       this.setCenter();
     });
-  }
-
-  fetchWeatherData() {
-    this.weather = null;
-    this.http.get<RootObject>(this.baseUrl + `weatherforecast?latitude=${this.latitude}&longitude=${this.longitude}`).subscribe(result => {
-      this.weather = result;
-    }, error => console.error(error));
   }
 
   setCenter() {
     var view = this.map.getView();
     view.setCenter(ol.proj.fromLonLat([this.longitude, this.latitude]));
-    view.setZoom(8);
+    view.setZoom(12);
   }
 }
 export interface Weather {
@@ -156,11 +167,8 @@ export interface Weather3 {
 
 export interface Daily {
   dt: number;
-  dt_DateTime: string;
   sunrise: number;
-  sunriseTime: string;
   sunset: number;
-  sunsetTime: string;
   moonrise: number;
   moonset: number;
   moon_phase: number;
