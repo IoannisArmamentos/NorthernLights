@@ -38,6 +38,7 @@ The typescript part where the coordinates and the map are initialized and the de
 **Useful links that helped me:** <br>
 https://www.youtube.com/watch?v=nGVoHEZojiQ <br>
 https://github.com/ultrasonicsoft/ng-openstreetmap-demo <br>
+https://github.com/ultrasonicsoft/ng-openstreetmap-demo/blob/master/src/app/app.component.ts
 https://github.com/CodeExplainedRepo/Weather-App-JavaScript <br>
 https://github.com/atufkas/angular-openweather-app <br>
 https://stackoverflow.com/questions/26880487/formatting-the-mouseposition-control-output-in-openlayers-3 <br>
