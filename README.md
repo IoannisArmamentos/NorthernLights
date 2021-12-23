@@ -1,6 +1,6 @@
 # NorthernLights
 
-A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 15 seconds to load the weather data.
+A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 10 seconds to load the weather data.
 
 **Openstreetmap** <br>
 You can select a location on the map with your mouse. Latitude & longitude are saved on click. <br>
@@ -41,5 +41,6 @@ https://github.com/ultrasonicsoft/ng-openstreetmap-demo <br>
 https://github.com/ultrasonicsoft/ng-openstreetmap-demo/blob/master/src/app/app.component.ts
 https://github.com/CodeExplainedRepo/Weather-App-JavaScript <br>
 https://github.com/atufkas/angular-openweather-app <br>
-https://stackoverflow.com/questions/26880487/formatting-the-mouseposition-control-output-in-openlayers-3 <br>
+Mouse: https://stackoverflow.com/questions/26880487/formatting-the-mouseposition-control-output-in-openlayers-3 <br>
+Timestamp to Date: https://stackoverflow.com/questions/38569832/convert-timestamp-to-date-using-angular-2-pipes <br>
 https://openlayers.org/ <br>
