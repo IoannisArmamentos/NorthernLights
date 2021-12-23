@@ -5,7 +5,6 @@ name: Build and deploy ASP.Net Core app to Azure Web App - northernlights
 
 on:
   push:
-  pull_request:
     branches:
       - master
   workflow_dispatch:
