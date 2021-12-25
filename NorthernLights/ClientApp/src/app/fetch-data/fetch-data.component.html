@@ -1,78 +1,99 @@
 <h1 id="tableLabel">Weather forecast</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<!--<p>This component demonstrates fetching data from the server.</p>-->
 
 <div id="map" class="map"></div>
 <div id="mouse-position"></div>
 
-<h3>Current Weather</h3>
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Temp</th>
-      <th>Clouds</th>
-      <th>Humidity</th>
-      <th>Pressure</th>
-      <th>Wind Speed</th>
-      <th>Sunrise / Sunset</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngIf="weather.current">
-      <td>{{weather.current.dt*1000 | date}} <BR> {{ weather.current.weather[0].main }}  </td>
-      <td><img src="http://openweathermap.org/img/wn/{{weather.current.weather[0].icon}}@2x.png" width="50" /> <BR> {{ weather.current.temp + "°C" }}</td>
-      <td>{{ weather.current.clouds + "%" }}</td>
-      <td>{{ weather.current.humidity + "%" }}</td>
-      <td>{{ weather.current.pressure + "hPa" }}</td>
-      <td>{{ weather.current.wind_speed + "m/s"}}</td>
-      <td>{{ weather.current.sunrise*1000 | date:'HH:mm' }} / {{ weather.current.sunset*1000 | date:'HH:mm' }}</td>
-    </tr>
-  </tbody>
-</table>
+<h3 *ngIf="isFirstTime">
+  Click on a location to get weather information.
+</h3>
+<ng-container *ngIf="!weather && !isFirstTime"><img src="../../assets/loading.gif" /> </ng-container> 
 
-<h3>Daily Forecast</h3>
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Temp</th>
-      <th>Clouds</th>
-      <th>Humidity</th>
-      <th>Pressure</th>
-      <th>Wind Speed</th>
-      <th>Sunrise / Sunset</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let dForecast of weather.daily">
-      <td>{{dForecast.dt*1000 | date}} <BR> {{ dForecast.weather[0].main }}  </td>
-      <td><img src="http://openweathermap.org/img/wn/{{dForecast.weather[0].icon}}@2x.png" width="50" /> <BR> {{ dForecast.temp.max + "°C" }} <BR> {{dForecast.temp.min + "°C" }} </td>
-      <td>{{ dForecast.clouds + "%" }}</td>
-      <td>{{ dForecast.humidity + "%" }}</td>
-      <td>{{ dForecast.pressure + "hPa" }}</td>
-      <td>{{ dForecast.wind_speed + "m/s"}}</td>
-      <td>{{ dForecast.sunrise*1000 | date:'HH:mm' }} / {{ dForecast.sunset*1000 | date:'HH:mm' }}</td>
-    </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="weather && !isFirstTime">
+  <h3 class="h3">Current Weather</h3>
+  <table class='table table-hover table-dark table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+    <thead class="h5">
+      <tr>
+        <th>Day</th>
+        <th>Temp</th>
+        <th>Clouds</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Wind Speed</th>
+        <th>Sunrise / Sunset</th>
+      </tr>
+    </thead>
+    <tbody class="h6">
+      <tr *ngIf="weather.current">
+        <td>{{weather.current.dt*1000 | date }} <BR> {{ weather.current.weather[0].main }}  </td>
+        <td> <img src="http://openweathermap.org/img/wn/{{weather.current.weather[0].icon}}@2x.png" width="50"/> {{ weather.current.temp + "°C" }}</td>
+        <td>{{ weather.current.clouds + "%" }}</td>
+        <td>{{ weather.current.humidity + "%" }}</td>
+        <td>{{ weather.current.pressure + "hPa" }}</td>
+        <td>{{ weather.current.wind_speed + "m/s"}}</td>
+        <td>{{ weather.current.sunrise*1000 | date:'HH:mm' }} / {{ weather.current.sunset*1000 | date:'HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<h3>Region Alerts</h3>
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weather">
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Dates</th>
-      <th>Description</th>
-      <th>Tag</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let aForecast of weather.alerts">
-      <td>{{ aForecast.event}}</td>
-      <td>{{ aForecast.start*1000 | date }} <BR> {{ aForecast.end*1000 | date }}</td>
-      <td>{{ aForecast.description }}</td>
-      <td>{{ aForecast.tags }}</td>
-    </tr>
-  </tbody>
-</table>
+  <h3 class="h3">Daily Forecast</h3>
+  <table class='table table-hover table-dark table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+    <thead class="h5">
+      <tr>
+        <th>Day</th>
+        <th>Temp</th>
+        <th>Clouds</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Wind Speed</th>
+        <th>Sunrise / Sunset</th>
+      </tr>
+    </thead>
+    <tbody class="h6">
+      <tr *ngFor="let forecast of weather.daily">
+        <td>{{ forecast.dt*1000 | date }} <BR> {{ forecast.weather[0].main }}  </td>
+        <td>
+          <table>
+            <tr>
+              <img src="http://openweathermap.org/img/wn/{{forecast.weather[0].icon}}@2x.png" width="50" />
+              <td>
+                {{ forecast.temp.max + "°C" }} <BR> {{ forecast.temp.min + "°C" }}
+              </td>
+            </tr>
+          </table>
+        </td>
+<!--    <td rowspan="2"> <img src="http://openweathermap.org/img/wn/{{forecast.weather[0].icon}}@2x.png" width="50" /></td>
+        <td> {{ forecast.temp.max + "°C" }} <BR> {{ forecast.temp.min + "°C" }}</td>-->
+        <td>{{ forecast.clouds + "%" }}</td>
+        <td>{{ forecast.humidity + "%" }}</td>
+        <td>{{ forecast.pressure + "hPa" }}</td>
+        <td>{{ forecast.wind_speed + "m/s"}}</td>
+        <td>{{ forecast.sunrise*1000 | date:'HH:mm' }} / {{ forecast.sunset*1000 | date:'HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="h3">Region Alerts</h3>
+  <div *ngIf="!weather.alerts">  <h4>No regional alerts found.</h4></div>
+  <ng-container *ngIf="weather.alerts">
+    <table class='table table-hover table-dark table-striped' aria-labelledby="tableLabel" *ngIf="weather">
+      <thead class="h5">
+        <tr>
+          <th>Event</th>
+          <th>Dates</th>
+          <th>Description</th>
+          <th>Tag</th>
+        </tr>
+      </thead>
+      <tbody class="h6">
+        <tr *ngFor="let alert of weather.alerts">
+          <td>{{ alert.event}}</td>
+          <td>{{ alert.start*1000 | date }} <BR> {{ alert.end*1000 | date }}</td>
+          <td>{{ alert.description }}</td>
+          <td>{{ alert.tags }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</ng-container>

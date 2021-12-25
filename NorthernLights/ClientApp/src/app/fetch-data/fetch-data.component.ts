@@ -14,7 +14,7 @@ export class FetchDataComponent implements OnInit, OnDestroy{
   latitude: any;
   longitude: any;
   http: HttpClient;
-
+  isFirstTime: boolean=true;
   subscription: Subscription;
   onRequest: Subject<{ longitude, latitude }> = new Subject<{ longitude, latitude }>();
 
@@ -48,6 +48,10 @@ export class FetchDataComponent implements OnInit, OnDestroy{
       distinctUntilChanged(),
       switchMap(longlat => this.http.get<RootObject>(this.baseUrl + `weatherforecast?latitude=${longlat.latitude}&longitude=${longlat.longitude}`)
       )).subscribe((result: RootObject) => {
+        // !! checks if result exists and not null etc.
+        if (!!result) {
+          this.isFirstTime = false;
+        }
         this.weather = result;
         console.error(result);
       }, error => console.error(error));

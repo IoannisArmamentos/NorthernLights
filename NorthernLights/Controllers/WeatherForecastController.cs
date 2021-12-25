@@ -17,7 +17,7 @@ namespace NorthernLights.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly HttpClient _httpClient;
         private string url = "onecall?lat={lat}&lon={long}&appid={apikey}&units=metric";
-
+        // For city search use q={city} and remove the lat&long, this will be implemented later.
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpClientFactory factory, IOptions<OpenWeatherOptions> options)
         {
             _logger = logger;
@@ -52,7 +52,8 @@ namespace NorthernLights.Controllers
                 response.EnsureSuccessStatusCode();
 
 /*              // Uses the Extensions.cs to transform date&time for some elements
- *              // This is the "backend way" that I chose not to implement for now
+                // This is the "backend way" that I chose not to implement for now
+                // You must create the corresponding string fields in WeatherForecast.cs & fetch-data.components.ts
                 foreach (var daily in reply.daily)
                 {
                     daily.dt_DateTime = daily.dt.GetDate();
