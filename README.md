@@ -3,7 +3,7 @@
 ## Github Actions
 [![.NET](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml/badge.svg)](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml)
 
-A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 10 seconds to load the weather data.
+A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 5 seconds to load the weather data.
 Production is hosted on Azure here: https://northernlights.azurewebsites.net/ <br>
 
 ![gen](https://user-images.githubusercontent.com/1202504/147295852-f27948f6-681f-45fb-9fff-e53e781f077b.png)
@@ -19,13 +19,13 @@ Utilizing the One Call API from https://openweathermap.org/api/one-call-api , we
 ![json](https://user-images.githubusercontent.com/1202504/147295616-617d48db-8805-47c8-9537-9cc9f705b3c4.png)
 
 
-I used Current & Daily Weather and Region Alerts. These alerts refer to the regional area around the choosen coordinates as well as the local language. These are setup by the API and cannot be changed or be more precise/detailed. <br>
+I used Current & Daily Weather and Region Alerts. These alerts refer to the regional area around the choosen coordinates as well as the local language. They are setup by the API and cannot be changed or be more precise/detailed. <br>
 Global weather alerts with live updates can be created by subscribing to the paid API, implementing Webhook in backend that will be called. To push that info into the frontend, websocket implementation can be used.![alert3](https://user-images.githubusercontent.com/1202504/147295431-364073eb-ab20-4f7e-949f-c6151edc2930.png)
 
 ## Source Files <br>
 **WeatherForecast.cs** <br>
 Declaring classes and variables. Date comes in *double dt* Unix timestamp that needs proper converting. <br>
-For example, *public class Daily* has to do with the incoming values for the next 10 days. <br>
+For example, *public class Daily* has to do with the incoming values for the next 7 days. <br>
 
 **WeatherForecastController.cs** <br>
 GetAsync sends a GET request with apikey, langitude and longitude, etc. <br>
@@ -55,9 +55,12 @@ The typescript part where the coordinates and the map are initialized and the de
 The YAML file is located in *.github/workflows/pipelines.yml* <br>
 Currently there are a master and a dev branch. Every new commit, passes through the CI/CD that is properly setup with specific factors.<br>
 
-<br>
+## Bugs <br>
+1) When the tables have grey-white background, grey cloud icons cannot be seen. When the background is blackish, rain drops and snow icons can be hardly seen.
+One solution is too simply adjust the background color, if we want to use the specify icon pack from openweather. <br>
 
 ## Useful links that helped me <br>
+Generally as an idea: <br>
 https://www.youtube.com/watch?v=nGVoHEZojiQ <br>
 https://github.com/CodeExplainedRepo/Weather-App-JavaScript <br>
 OpenWeatherMap: <br>
@@ -72,3 +75,8 @@ https://stackoverflow.com/questions/38569832/convert-timestamp-to-date-using-ang
 CI/CD: <br>
 https://github.com/Azure/webapps-deploy <br>
 https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel#generate-deployment-credentials%2010%20#
+
+**You 've reached the end, take a cookie!** <br>
+https://youtu.be/hTJhU7Nt4xw?t=7775 <br>
+Remember, the world is full of kings and queens who blind your eyes and steal your dreams. <br>
+\m/ Black Sabbath \m/
