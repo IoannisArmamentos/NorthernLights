@@ -58,6 +58,7 @@ Currently there are a master and a dev branch. Every new commit, passes through 
 ## Bugs <br>
 1) When the tables have grey-white background, grey cloud icons cannot be seen. When the background is blackish, rain drops and snow icons can be hardly seen.
 One solution is too simply adjust the background color, if we want to use the specify icon pack from openweather. <br>
+On the mobile app, the background is black but the icons have the proper white, so eveything can be seen clearly . I can't find the specific icons in this api, maybe they require a paid subscription?
 
 ## Useful links that helped me <br>
 Generally as an idea: <br>
