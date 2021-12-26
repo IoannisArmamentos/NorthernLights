@@ -8,13 +8,13 @@ declare var ol: any;
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
-export class FetchDataComponent implements OnInit, OnDestroy{
+export class FetchDataComponent implements OnInit, OnDestroy {
   public weather: RootObject;
   map: any;
   latitude: any;
   longitude: any;
   http: HttpClient;
-  isFirstTime: boolean=true;
+  isFirstTime: boolean = true;
   subscription: Subscription;
   onRequest: Subject<{ longitude, latitude }> = new Subject<{ longitude, latitude }>();
 
@@ -23,7 +23,7 @@ export class FetchDataComponent implements OnInit, OnDestroy{
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    }
+  }
 
 
   /* A callback method where X=Longitude Y=Latitude
@@ -91,6 +91,8 @@ export class FetchDataComponent implements OnInit, OnDestroy{
     view.setZoom(12);
   }
 }
+
+
 export interface Weather {
   id: number;
   main: string;
