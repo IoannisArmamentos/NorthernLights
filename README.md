@@ -3,7 +3,7 @@
 ## Github Actions
 [![.NET](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml/badge.svg)](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml)
 
-A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks. It may take up to 5 seconds to load the weather data.
+A weather forecast application made in Visual Studio using Angular 8 and ASP.NET Core 5 frameworks.
 Production is hosted on Azure here: https://northernlights.azurewebsites.net/ <br>
 
 ![gen](https://user-images.githubusercontent.com/1202504/147295852-f27948f6-681f-45fb-9fff-e53e781f077b.png)
@@ -59,6 +59,7 @@ Currently there are a master and a dev branch. Every new commit, passes through 
 1) When the tables have grey-white background, grey cloud icons cannot be seen. When the background is blackish, rain drops and snow icons can be hardly seen.
 One solution is too simply adjust the background color, if we want to use the specify icon pack from openweather. <br>
 On the mobile app, the background is black but the icons have the proper white, so eveything can be seen clearly . I can't find the specific icons in this api, maybe they require a paid subscription?
+2) It may take up to 5 seconds to load the weather data and sometimes it doesn't load the USA region requests. Maybe this is due to the api being free, as some requests seem to time out, although they are properly sent.
 
 ## Useful links that helped me <br>
 Generally as an idea: <br>
