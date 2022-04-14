@@ -1,4 +1,4 @@
-# NorthernLights
+# NorthernLights new
 
 ## Github Actions
 [![.NET](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml/badge.svg)](https://github.com/IoannisArmamentos/NorthernLights/actions/workflows/pipeline.yml)
